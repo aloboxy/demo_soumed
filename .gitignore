@@ -1,0 +1,15 @@
+# Dependency directories
+/vendor/
+/node_modules/
+/assets/
+/application/cache/
+/application/logs/
+/application/core/
+/application/helpers/
+/application/hooks/
+/application/language/
+/application/libraries/
+/application/modules/
+/application/third_party/
+/workflows/
+/uploads/

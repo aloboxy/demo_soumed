@@ -1,0 +1,45 @@
+name: 🚀 Demo Deploy
+
+on:
+  push:
+    branches:
+      - main  # Change to 'master' if that's your default
+
+jobs:
+  ftp-deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ftp
+          script: |
+            cd ~/portal.rtag.online/
+            git pull
+
+          exclude: |
+            **/.git*
+            **/.github*
+            **/uploads/*
+            **/System/*
+            **/assets/*
+            **/application/config/*
+             **/application/cache/*
+             **/application/logs/*
+             **/application/core/*
+             **/application/helpers/*
+             **/application/hooks/*
+             **/application/language/*
+             **/application/libraries/*
+             **/application/modules/*
+             **/application/third_party/*
+             **/workflows/*
